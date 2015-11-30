@@ -1,14 +1,13 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+set noswapfile
 
 " colorscheme
 colorscheme seoul256-light
 
 " tab stuff
-set expandtab
-set shiftwidth=2
-set tabstop=2
+set expandtab ts=2 sw=2 ai
 
 " reselect visual block after indent/outdent
 vnoremap < <gv
@@ -41,13 +40,17 @@ set hidden
 let g:airline_powerline_fonts = 1
 
 " syntastic PHP
-let g:syntastic_php_checkers = ['php']
+let g:syntastic_php_checkers      = ['php']
+let g:syntastic_haskell_checkers  = ['ghc-mod', 'hlint']
 
 " php documentor
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 autocmd BufRead,BufNewFile *.php nnoremap <buffer> <C-c> :call pdv#DocumentWithSnip()<CR>
 
-"better autocomplete
+" ultisnips list snippets
+let g:UltiSnipsListSnippets = "<C-l>"
+
+" just a bit better autocomplete for php
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set completeopt=longest,menuone
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
@@ -78,3 +81,4 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " bind \ (backward slash) to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap <C-n> :Ag<SPACE>
+
