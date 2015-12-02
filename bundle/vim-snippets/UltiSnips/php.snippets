@@ -359,4 +359,16 @@ snippet inheritdoc "@inheritdoc docblock"
  */
 endsnippet
 
-# :vim:ft=snippets:
+snippet Sch:c "Schema::create snippet"
+Schema::create('${1:table_name}', function(Blueprint $t)
+{
+		$t->increments('id');
+		$t->timestamps();
+		$t->softDeletes();
+		$t->$0
+});
+endsnippet
+
+snippet Sch:d "Schema::drop snippet"
+Schema::drop('${1:table_name}');
+endsnippet

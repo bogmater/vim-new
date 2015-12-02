@@ -47,8 +47,14 @@ let g:syntastic_haskell_checkers  = ['ghc-mod', 'hlint']
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 autocmd BufRead,BufNewFile *.php nnoremap <buffer> <C-c> :call pdv#DocumentWithSnip()<CR>
 
-" ultisnips list snippets
-let g:UltiSnipsListSnippets = "<C-l>"
+" ultisnips triggers
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+" load laravel snippets in all php files (does anyone use any other framework
+" nowadays?)
+autocmd FileType php set ft=php.laravel
 
 " just a bit better autocomplete for php
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
@@ -78,7 +84,14 @@ endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" bind \ (backward slash) to grep shortcut
+" bind ctrl-n to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap <C-n> :Ag<SPACE>
 
+" tabular align binds on leader
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
