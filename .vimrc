@@ -2,6 +2,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 set noswapfile
+set nu
 
 " colorscheme
 colorscheme seoul256-light
@@ -40,7 +41,7 @@ set hidden
 let g:airline_powerline_fonts = 1
 
 " syntastic PHP
-let g:syntastic_php_checkers      = ['php']
+let g:syntastic_php_checkers      = ['php', 'phpmd']
 let g:syntastic_haskell_checkers  = ['ghc-mod', 'hlint']
 
 " php documentor
@@ -52,23 +53,29 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-" load laravel snippets in all php files (does anyone use any other framework
-" nowadays?)
-autocmd FileType php set ft=php.laravel
-
-" just a bit better autocomplete for php
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-set completeopt=longest,menuone
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-
 " don't match <> in .php files
 au FileType php let b:delimitMate_matchpairs = "(:),[:],{:}"
 
-" taggatron
-let g:tagcommands = {
-      \    "php" : {"tagfile":".php.tags","args":"-R", "cmd": "ctags"},
-      \    "javascript" : {"tagfile":".js.tags","args":"-R"} 
-      \}
+" phpcomplete
+set completeopt=longest,menuone,preview
+let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimPhpValidate = 0
+
+" ycm semantic triggers
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+  \             're!\[.*\]\s'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -95,3 +102,7 @@ if exists(":Tabularize")
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
+
+" insert php use statement
+inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+noremap <Leader>u :call PhpInsertUse()<CR>

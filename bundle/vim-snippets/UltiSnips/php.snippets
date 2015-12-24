@@ -289,7 +289,7 @@ namespace ${1:`!p
 abspath = os.path.abspath(path)
 m = re.search(r'[A-Z].+(?=/)', abspath)
 if m:
-	snip.rv = m.group().replace('/', '\\')
+	snip.rv = 'App\\' +  m.group().replace('/', '\\')
 `};
 
 /**
@@ -308,7 +308,7 @@ namespace ${1:`!p
 abspath = os.path.abspath(path)
 m = re.search(r'[A-Z].+(?=/)', abspath)
 if m:
-	snip.rv = m.group().replace('/', '\\')
+	snip.rv = 'App\\' + m.group().replace('/', '\\')
 `};
 
 /**
@@ -372,3 +372,80 @@ endsnippet
 snippet Sch:d "Schema::drop snippet"
 Schema::drop('${1:table_name}');
 endsnippet
+
+snippet Sch:t "Schema::table snippet"
+Schema::table('${1:table_name}', function(Blueprint $t)
+{
+		$t->$0
+});
+endsnippet
+
+snippet Rt:gef "Route::get closure snippet"
+Route::get('${1:path/to/route}', function(${2:params})
+{
+	$0
+});
+endsnippet
+
+snippet Rt:ge "Route::get controller snippet"
+Route::get('${1:path/to/route}', 'App\Controllers\\${2:Foo\BarController}@${3:method}');
+$0
+endsnippet
+
+snippet Rt:pof "Route::post closure snippet"
+Route::post('${1:path/to/route}', function(${2:params})
+{
+	$0
+});
+endsnippet
+
+snippet Rt:po "Route::post controller snippet"
+Route::get('${1:path/to/route}', 'App\Controllers\\${2:Foo\BarController}@${3:method}');
+$0
+endsnippet
+
+snippet Rt:puf "Route::put closure snippet"
+Route::put('${1:path/to/route}', function(${2:params})
+{
+	$0
+});
+endsnippet
+
+snippet Rt:pu "Route::put controller snippet"
+Route::put('${1:path/to/route}', 'App\Controllers\\${2:Foo\BarController}@${3:method}');
+$0
+endsnippet
+
+snippet Rt:df "Route::delete closure snippet"
+Route::delete('${1:path/to/route}', function(${2:params})
+{
+	$0
+});
+endsnippet
+
+snippet Rt:d "Route::delete controller snippet"
+Route::put('${1:path/to/route}', 'App\Controllers\\${2:Foo\BarController}@${3:method}');
+$0
+endsnippet
+
+snippet Rt:grpx "Route::group prefix snippet"
+Route::group(['prefix' => '${1:prefix}'], function()
+{
+	$0
+});
+endsnippet
+
+snippet Rt:grmw "Route::group middleware snippet"
+Route::group(['middleware' => '${1:middleware}'], function()
+{
+	$0
+});
+endsnippet
+
+snippet Rt:grpm "Route::group prefix & middleware snippet"
+Route::group(['prefix' => '${1:prefix}' 'middleware' => '${2:middleware}'], function()
+{
+	$0
+});
+endsnippet
+

@@ -19,9 +19,6 @@
 [submodule "bundle/pdv"]
 	path = bundle/pdv
 	url = https://github.com/tobyS/pdv.git
-[submodule "bundle/phpcomplete"]
-	path = bundle/phpcomplete
-	url = https://github.com/shawncplus/phpcomplete.vim.git
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -64,3 +61,9 @@
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
+[submodule "bundle/vim-blade"]
+	path = bundle/vim-blade
+	url = https://github.com/jwalton512/vim-blade.git
+[submodule "bundle/vim-php-namespace"]
+	path = bundle/vim-php-namespace
+	url = https://github.com/arnaud-lb/vim-php-namespace.git
