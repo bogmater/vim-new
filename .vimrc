@@ -5,7 +5,7 @@ set noswapfile
 set nu
 
 " colorscheme
-colorscheme seoul256-light
+colorscheme tender
 
 " tab stuff
 set expandtab ts=2 sw=2 ai
@@ -57,9 +57,9 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 au FileType php let b:delimitMate_matchpairs = "(:),[:],{:}"
 
 " phpcomplete
-set completeopt=longest,menuone,preview
-let g:EclimCompletionMethod = 'omnifunc'
-let g:EclimPhpValidate = 0
+" set completeopt=longest,menuone,preview
+" let g:EclimCompletionMethod = 'omnifunc'
+" let g:EclimPhpValidate = 0
 
 " ycm semantic triggers
 let g:ycm_semantic_triggers =  {
